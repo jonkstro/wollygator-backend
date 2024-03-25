@@ -10,7 +10,7 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
     // Métodos adicionais:
     // Buscar por email, ignorando case sensitive
-    List<User> findByEmailIgnoreCase(String email);
+    List<User> findByEmailContainingIgnoreCase(String email);
     // Buscar pela matrícula da carteira do usuário
-    List<User> findByCarteiraMatricula(String matricula);
+    List<User> findByCarteiraMatriculaContainingIgnoreCase(String matricula);
 }
