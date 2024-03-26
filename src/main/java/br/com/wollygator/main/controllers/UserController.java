@@ -34,6 +34,11 @@ public class UserController {
         return ResponseEntity.ok().body(service.findById(id));
     }
 
+    @GetMapping("/mat/{matricula}")
+    public ResponseEntity<List<User>> findByMatricula(@PathVariable String matricula) {
+        return ResponseEntity.ok().body(service.findByMatricula(matricula));
+    }
+
     @PostMapping
     public ResponseEntity<User> create(@RequestBody User obj) {
         service.create(obj);

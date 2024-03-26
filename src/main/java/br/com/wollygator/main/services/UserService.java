@@ -3,6 +3,7 @@ package br.com.wollygator.main.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.wollygator.main.models.User;
@@ -44,8 +45,12 @@ public class UserService {
     @Transactional
     public User create(User obj) {
 
-        if (!UserServiceUtil.isPasswordValid(obj.getPassword())) {
+        if (UserServiceUtil.isPasswordValid(obj.getPassword())) {
             // TODO: Adicionar Security para Hashear a senha
+            String hashedPassword = new BCryptPasswordEncoder().encode(obj.getPassword());
+            obj.setPassword(hashedPassword);
+        } else {
+            // Se a senha não for válida, não vai fazer mais nada
             return null;
         }
 
