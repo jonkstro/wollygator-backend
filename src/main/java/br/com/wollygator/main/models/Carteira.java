@@ -22,9 +22,8 @@ public class Carteira implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    @Length(min=6)
+    @Length(max = 6, min = 6)
     private String matricula;
-    @NotNull
     private Date dataExpedicao;
     private Date dataValidade;
     @URL(message = "Insira uma URL válida")
